@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>M<sup>2</sup>StyleGS: Multi-Modality 3D Style Transfer with Gaussian Splatting</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <!-- <script src="./static/js/bulma-slider.min.js"></script> -->
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">M<sup>2</sup>StyleGS: Multi-Modality 3D Style Transfer with Gaussian Splatting
+            </h1>
+            <h2 class="title publication-title is-3"> Arxiv 2024 </h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/xingy038" target="_blank">Xingyu Miao</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/Nora202" target="_blank">Xueqi Qiu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://haorand.github.io/" target="_blank">Haoran Duan</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://orcid.org/0000-0002-8558-1822" target="_blank">Kevin W. Tong</a><sup>3</sup>,  
+              </span><br>
+              
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=AVemHcIAAAAJ&hl=en" target="_blank">Jingjing Deng</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=en&user=IrkuknEAAAAJ" target="_blank">Yang Long</a><sup>1</sup>,
+              </span>
+              
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Durham university, UK &nbsp; </span>
+              <span class="author-block"><sup>2</sup>Newcastle university, UK &nbsp; </span>
+              <span class="author-block"><sup>3</sup>Nanjing University of Posts and Telecommunications, China</span>
+            </div>
+
+            <div class="column has-text-centered">
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2402.01950" class="external-link button is-normal is-rounded is-dark"
+                    target="_blank">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv(comming soon)</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Nora202/MMStyleGS" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code(coming soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body has-text-justified">
+        <br>
+        <img src="./assets/main.png" width="100%" />
+        <h2 class="subtitle">
+          Multi-Modality 3D style transfer with reference image or reference text. Utilizing a set of 3D scene images captured from multiple perspectives, the M<sup>2</sup>StyleGS model can effectively apply reference styles described in arbitrary text or derived from any image, achieving high-precision style transformation.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Current 3D style transfer methods usually depend on a reference image to incorporate style into 3D content. However, in many practical applications, users also look forward to transferring styles through textual imagery, instead of being limited to a fixed reference image. To address this limitation, we introduce a novel real-time styling technique M<sup>2</sup>StyleGS. It utilizes the multimodal knowledge refined by CLIP to generate a sequence of precisely color-mapped novel views to achieve instant 3D style transfer with 3D Gaussian Splatting as a backbone.  M<sup>2</sup>StyleGS resolves the abnormal transformation by employing a precise feature alignment process termed "subdivisive flow", which accurately projects the style domain of the mapped CLIP feature to the style domain of the VGG feature. Additionally, we introduce auxiliary observation loss and suppression loss to enhance visual effects. By integrating these technologies, M<sup>2</sup>StyleGS can use text or images as style references to generate a series of style-enhanced novel views. Our experimental results indicate that M<sup>2</sup>StyleGS surpasses our baseline ConRF by up to 25% in terms of consistency and visual quality, measured by RMSE and LPIPS.
+            </p>
+          </div>
+        </div>
+      </div>
+  </section>
+  
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3"><center>Image reference transfer</center></h2>
+      <div class="hero-body">
+        <div class="columns is-3 is-multiline is-mobile" style="display: flex; align-items: center; justify-content: center;">
+          <div class="column is-one-third" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative;">
+              <img src="./assets/1.jpg" alt="Overlay 1" style="width:90px; position: absolute; left: 0; bottom: 0; z-index: 2;">
+              <img src="./assets/orchids_0.gif" alt="GIF 1" style="width:65%; position: relative; z-index: 1; transform: translateX(80px);">
+            </div>
+          </div>
+          <div class="column is-one-third" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative;">
+              <img src="./assets/2.jpg" alt="Overlay 2" style="width:90px; position: absolute; left: 0; bottom: 0; z-index: 2;">
+              <img src="./assets/trex_0.gif" alt="GIF 2" style="width:65%; position: relative; z-index: 1; transform: translateX(80px);">
+            </div>
+          </div>
+          <div class="column is-one-third" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative;">
+              <img src="./assets/3.jpg" alt="Overlay 3" style="width:90px; position: absolute; left: 0; bottom: 0; z-index: 2;">
+              <img src="./assets/fern.gif" alt="GIF 3" style="width:65%; position: relative; z-index: 1; transform: translateX(80px);">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3"><center>Texture reference transfer</center></h2>
+      <div class="hero-body">
+        <div class="columns is-3 is-multiline is-mobile" style="display: flex; align-items: center; justify-content: center;">
+          <div class="column is-one-third" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative;">
+              <img src="./assets/truck_3.gif" alt="GIF 1" style="width:90%; position: relative; z-index: 1; transform: translateX(20px);">
+              <span style="position: absolute; bottom: 10px; left: 10px; z-index: 2; font-style: italic; color: white; background-color: rgba(0,0,0,0.5); padding: 5px;">"Mona Lisa by Da Vinci"</span>
+            </div>
+          </div>
+          <div class="column is-one-third" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative;">
+              <img src="./assets/Ignatius_0.gif" alt="GIF 2" style="width:90%; position: relative; z-index: 1; transform: translateX(20px);">
+              <span style="position: absolute; bottom: 10px; left: 10px; z-index: 2; font-style: italic; color: white; background-color: rgba(0,0,0,0.5); padding: 5px;">"Pencil sketch"</span>
+            </div>
+          </div>
+          <div class="column is-one-third" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative;">
+              <img src="./assets/Family_1.gif" alt="GIF 3" style="width:90%; position: relative; z-index: 1; transform: translateX(20px);">
+              <span style="position: absolute; bottom: 10px; left: 10px; z-index: 2; font-style: italic; color: white; background-color: rgba(0,0,0,0.5); padding: 5px;">"Campfire in the snow"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</body>
+
+</html>
