@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # [*Arxiv 2025*] M2StyleGS: Multi-Modality 3D Style Transfer with Gaussian Splatting
 
 ## [Project page](https://nora202.github.io/MMStyleGS/) |  [Paper](https://arxiv.org/abs/2403.07807)
@@ -73,3 +74,6 @@ Our work is based on [3D Gaussian Splatting](https://github.com/graphdeco-inria/
 ## 5 Citation
 
 
+=======
+We will release the code soon.
+>>>>>>> 3602c8f19e55290810a58fca04b1c253235ad404
