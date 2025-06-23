@@ -49,7 +49,6 @@ from torchvision.transforms.functional import to_pil_image
 wandb.init()
 device = torch.device('cuda')
 
-
 def dis_loss( vgg, clip):
     loss = F.mse_loss(vgg, clip)
 
@@ -157,7 +156,6 @@ def training(dataset, opt, pipe, ckpt_path, decoder_path,mapping_path, content_w
     style_loader = getDataLoader(args.wikiartdir, batch_size=1, sampler=InfiniteSamplerWrapper,
                     image_side_length=256, num_workers=4)
     style_iter = iter(style_loader)
-    #print(len(style_iter))
 
     bg_color = [1]*3 if dataset.white_background else [0]*3
     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
@@ -267,8 +265,6 @@ def training(dataset, opt, pipe, ckpt_path, decoder_path,mapping_path, content_w
         progress_bar = tqdm(range(first_iter, opt.iterations), desc="Artistic training", bar_format='{l_bar}{r_bar}')
         first_iter = 1
 
-
-
         for iteration in range(first_iter, opt.iterations + 1):
 
             if not viewpoint_stack:
@@ -322,7 +318,7 @@ def training(dataset, opt, pipe, ckpt_path, decoder_path,mapping_path, content_w
             gaussians.optimizer_D.step()
             gaussians.optimizer_D.zero_grad(set_to_none=True)
 
-            # 生成器 loss（正常反向传播）
+
             loss_gan_g = gaussians.style_transfer.discriminator.compute_loss(rendered_rgb, valid)
             loss = content_loss * content_weight + style_loss * style_weight + cv_loss * s_a_weight + g_weight * loss_gan_g
             loss.backward()
@@ -352,21 +348,12 @@ def training(dataset, opt, pipe, ckpt_path, decoder_path,mapping_path, content_w
                 if iteration == opt.iterations:
                     progress_bar.close()
 
-                # Log
-                #tb_writer.add_scalar('train_loss/content_loss', content_loss.item(), iteration)
-                #tb_writer.add_scalar('train_loss/style_loss', style_loss.item(), iteration)
-                # # 在训练开始前初始化wandb
-                # wandb.init(project="your_project_name", entity="your_wandb_entity")
-                #
-                # # 在训练过程中记录日志
+
                 wandb.log({'train_loss/cv_loss': cv_loss.item(), 'iteration': iteration})
                 wandb.log({'train_loss/content_loss': content_loss.item(), 'iteration': iteration})
                 wandb.log({'train_loss/style_loss': style_loss.item(), 'iteration': iteration})
                 wandb.log({'train_loss/loss_gan_g': loss_gan_g.item(), 'iteration': iteration})
                 wandb.log({'train_loss/loss_gan_d': loss_gan_d.item(), 'iteration': iteration})
-                #wandb.log({'train_loss/g_weight':loss_gan_g,'iteration': iteration})
-                #wandb.log({'train_loss/d_weight':loss_gan_d,'iteration': iteration})
-
 
         os.makedirs(args.model_path+ "/chkpnt/" , exist_ok=True)
         torch.save(gaussians.capture(is_style_model=True), args.model_path + "/chkpnt/" + str(j)+'_'+str(n) + "_gaussians.pth")
@@ -423,19 +410,7 @@ def adaptive_instance_normalization(content_feat, style_feat):
     normalized_feat = (content_feat - content_mean.expand(
         size)) / content_std.expand(size)
     return normalized_feat * style_std.expand(size) + style_mean.expand(size)
-
-def train_transform():
-    transform_list = [
-        transforms.Resize(size=(512, 512)),
-        transforms.RandomCrop(256),
-        transforms.ToTensor()
-    ]
-    return transforms.Compose(transform_list)
-
 def style_transfer_2d(vgg,decoder,content, style, alpha=1.0,interpolation_weights=None):
-    #target_size = (content.shape[2], content.shape[3])
-    #style = F.interpolate(style, size=target_size, mode='bilinear', align_corners=False)
-
     assert (0.0 <= alpha <= 1.0)
     content_f = vgg(content)
     style_f = vgg(style)

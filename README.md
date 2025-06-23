@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+
 # [*Arxiv 2025*] M2StyleGS: Multi-Modality 3D Style Transfer with Gaussian Splatting
 
-## [Project page](https://nora202.github.io/MMStyleGS/) |  [Paper](https://arxiv.org/abs/2403.07807)
+## [Project page](https://nora202.github.io/MMStyleGS/) 
 
 
 ---
